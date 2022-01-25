@@ -1,0 +1,115 @@
+import java.util.Scanner;
+
+public class RunLengthEncode {
+
+	// encode method
+	public static String encode(String input) {
+
+		// variable initializations
+		int count = 1;
+		StringBuffer output = new StringBuffer();
+		
+		
+		// check if input length > 4
+		if (input.length() > 4) {
+
+			// set count to 1
+			count = 1;
+
+			// go through input string and check for 4 repeats
+			for (int i = 0; i < input.length(); i++) {
+
+				// reset count
+				count = 1;
+
+				// keep looping through the string and compare i to its next character
+				while (i < input.length() - 1 && input.charAt(i) == input.charAt(i + 1)) {
+
+					// increment count
+					count++;
+
+					// increment i
+					i++;
+
+				}
+				
+				
+
+				
+				//do not include 0
+				if (count >= 10) {
+					
+					// append the count
+					output.append("/");
+					output.append(count);
+					output.append(input.charAt(i));
+			
+					
+				}
+				
+				//include 0
+				else if (count > 4 ) {
+
+					// append the count
+					output.append("/0");
+					output.append(count);
+					output.append(input.charAt(i));
+
+				} 
+			
+				else {
+					output.append(input.charAt(i));
+					}
+				
+
+			} // end of for loop
+
+		} // end of length > 4 case
+
+		// if length is less than or equal to 4 (or no repeats); do nothing
+		if (input.length() <= 4 || count < 4) {
+			return input;
+		}
+
+		// returning the output string buffer: have to convert back to type string
+		return output.toString();
+	}
+
+	public static void main(String[] args) {
+
+		// variable initializations
+		Scanner keyboard = new Scanner(System.in);
+		String input = "";
+
+		
+		//initial user input
+		System.out.print("Enter a String: ");
+		input = keyboard.nextLine();
+		
+		//loop checking for correct length
+		while (input.length() > 50) {
+		// user display
+		System.out.print("String Length is too high. Please enter a new string: ");
+		input = keyboard.nextLine();
+		}
+		
+		
+		
+
+		
+		
+		System.out.println(encode(input));
+
+	}
+
+}
+
+
+
+/*
+ * Citing:
+ * https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html
+   https://docs.oracle.com/javase/tutorial/java/data/numberformat.html
+ */
+
+
