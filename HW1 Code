@@ -1,0 +1,151 @@
+// 370Hw1Real.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <cstdlib>
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+
+
+//function to convert integers to strings
+string intToString(int inp) {
+
+   //init the output
+    string output;
+
+    //loop through input
+    for (int i = inp; i > 0; i = i / 10)
+
+        //push back the results 
+        output.push_back((i % 10) + 48);
+
+    reverse(output.begin(), output.end());
+
+    //return the output
+    return output;
+
+}
+
+
+
+//function to encode 
+string encode(string input) {
+
+    //initializations
+    string output;
+    int count = 1;
+
+    //if init input is correct length
+    if (input.length() > 4) {
+
+        count = 1;
+
+        //looping through input 
+        for (int i = 0; i < input.length(); i++) {
+            count = 1;
+
+            //while the current and next are equal and its not at the end of the string
+            while (input[i] == input[i + 1] && i < input.length() - 1) {
+
+
+                //increment count
+                count++;
+
+                //increment i
+                i++;
+
+            }
+
+            
+
+            //if count is greater than 10
+            if (count >= 10) {
+
+                //apend the slash, letter, and count
+                output += '/';
+                output += intToString(count);
+                output += input[i];
+               
+
+            }
+            //if count is greater than 4
+            else if (count > 4) {
+
+                output += "/0";
+                output += intToString(count);
+                output += input[i];
+                
+
+            }
+            else {
+                output += input[i];
+            }
+
+           
+
+
+
+
+        }
+
+        //if count is less than or equal to 4
+        if (count <= 4) {
+            return input;
+        }
+
+    }
+
+    //if the initial input is not long enough
+    if (input.length() <= 4) {
+
+        return input;
+
+    }
+
+   
+
+    return output;
+
+}
+
+
+
+
+int main()
+{
+
+    //variable initilizations
+    string input;
+
+
+    //UI
+    cout << "Enter the string to be compressed: ";
+    cin >> input;
+
+    //check for length error
+    while (input.length() > 50) {
+
+        cout << "The String you entered is too long. Please enter a new string: ";
+        cin >> input;
+
+    }
+
+
+    cout << encode(input) << endl;
+    
+   
+
+    return 0;
+
+
+
+
+
+   
+}
+
+// Citing 
+// https://stackoverflow.com/questions/5590381/easiest-way-to-convert-int-to-string-in-c
+// 
