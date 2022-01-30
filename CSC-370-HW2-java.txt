@@ -1,0 +1,103 @@
+/*
+ * In many computer systems and networks, different users are
+granted different levels of access to different resources.
+In this case, you are given a int[] rights, indicating the
+privilege level of each user to use some system resource.
+You are also given a int minPermission, which is the
+minimum permission a user must have to use this resource.
+• You are to return a String indicating which users can and
+cannot access this resource. Each character in the return
+value corresponds to the element of users with the same
+index. 'A' indicates the user is allowed access, while 'D'
+indicates the user is denied access. 
+ * 
+ * 
+ * 
+ */
+
+
+
+import java.util.Scanner;
+
+public class AccessLevel {
+
+	public static String canAccess(int[] rights, int minPermission) {
+
+		// variable initialization
+		int counter = 0;
+		StringBuffer output = new StringBuffer();
+		// loop through and make sure the users all have permission
+		for (int i = 0; i < rights.length; i++) {
+
+			if (rights[i] < minPermission) {
+
+				output.append("D");
+
+			} else {
+				output.append("A");
+			}
+
+		} // end of for loop
+		
+		return output.toString();
+
+	}
+
+	
+	public static void printArray(int array[]) {
+
+		int length = array.length;
+
+		
+		System.out.print("{");
+		for (int i = 0; i < length; i++) {
+			System.out.print(array[i] +" ");
+		}
+		
+		
+		System.out.print( "}");
+	}
+
+	public static void main(String[] args) {
+
+		// inits
+		Scanner keyboard = new Scanner(System.in);
+		int minPermission;
+		int arraySize;
+
+		// get min user permission 
+		System.out.println("Enter min user permission: ");
+		minPermission = keyboard.nextInt();
+
+		//get total users in array
+		System.out.println("How many total users?: ");
+		arraySize = keyboard.nextInt();
+
+		//make a new array for rights size being total users
+		int[] rights = new int[arraySize];
+
+		// input user data into the array
+		for (int i = 0; i < rights.length; i++) {
+
+			System.out.println("Enter user data " + (i + 1) + " : ");
+
+			rights[i] = keyboard.nextInt();
+
+		}
+
+		//print each users rights
+		System.out.println();
+		printArray(rights);
+
+		//print user access
+		System.out.println();
+		System.out.println(canAccess(rights, minPermission));
+	
+	}
+}
+
+
+
+/*
+ * https://stackoverflow.com/questions/2622725/how-to-take-user-input-in-array-using-java
+*/
