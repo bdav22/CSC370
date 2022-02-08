@@ -1,0 +1,51 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class Dirsort {
+
+	class dirComp implements Comparator<String> {
+
+		public int compare(String a, String b) {
+			
+			//splits a and b for just slashes
+			String[] direct1 = a.split("/");
+			String[] direct2 = b.split("/");
+			
+			//compares the length of the two slash strings
+			int difference = direct1.length - direct2.length;
+
+			//if their is a difference in slash quantity
+			if (difference != 0) {
+				return difference;
+			} 
+
+			//return the alphabetical comparison 
+			return a.compareTo(b);
+		}
+	}
+
+	
+	//sort algorithm
+	public String[] sort(String[] dirs) {
+		Arrays.sort(dirs, new dirComp());
+		return dirs;
+	}
+
+	public static void main(String[] args) {
+		
+		
+	
+	}
+	
+	
+	
+	/*
+	 * 
+	 * https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html
+	 * https://www.geeksforgeeks.org/comparator-interface-java/
+	 * 
+	 * 
+	 * 
+	 */
+}
+
