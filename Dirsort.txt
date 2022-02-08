@@ -33,7 +33,14 @@ public class Dirsort {
 
 	public static void main(String[] args) {
 		
+		//TESTING
+		//Dirsort main = new Dirsort();
+        //String[] sorted = main.sort(new String[] {"/","/usr/","/usr/local/","/usr/local/bin/","/games/","/games/snake/","/homework/","/temp/downloads/"});
 		
+		//for (int i = 0; i < sorted.length; i++) {
+		//System.out.print(" '" + sorted[i] + "' ")
+		
+	//}
 	
 	}
 	
